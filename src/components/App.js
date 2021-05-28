@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 import Container from './Container';
 import FeedbackOptions from './FeedbackOptions';
 import Header from './Header';
-import Statistics from './Statistics';
+import Notification from './Notification';
 import Section from './Section';
+import Statistics from './Statistics';
 
 class App extends Component {
   state = {
@@ -38,13 +39,16 @@ class App extends Component {
             />
           </Section>
           <Section title="Statistics">           
-            <Statistics
-              good={good}
-              neutral={neutral}
-              bad={bad}
-              totalFeedback={totalFeedback}
-              positiveFeedbackPercentage={positiveFeedbackPercentage}
-            />
+            {totalFeedback > 0 ?
+              <Statistics
+                good={good}
+                neutral={neutral}
+                bad={bad}
+                totalFeedback={totalFeedback}
+                positiveFeedbackPercentage={positiveFeedbackPercentage}
+              /> :
+              <Notification message="No feedback given"/>
+            }
           </Section>         
         </Container>
     );
